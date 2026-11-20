@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Districts — AquaSure</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/glass.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" fill="#0284c7" opacity=".2"/><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" stroke="#0284c7" stroke-width="1.75" fill="none"/><path d="M9 18c0 2.76 2.24 5 5 5" stroke="#0284c7" stroke-width="1.75" stroke-linecap="round"/></svg>
+      AquaSure
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="districts.html" class="active">Districts</a></li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="test-water.html" class="nav-cta">Test Your Water</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+
+    <div class="page-header flex-between" style="flex-wrap:wrap;gap:.75rem">
+      <div>
+        <h1>All Districts</h1>
+        <p>Click any district card to view detailed analytics and parameter data.</p>
+      </div>
+      <a href="compare.html" class="btn btn-outline btn-sm">⚖️ Compare Districts</a>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stat-row" id="statsBar">
+      <div class="stat-chip">Total Samples: <strong id="totalSamplesBar">—</strong></div>
+      <div class="stat-chip">Avg Potable: <strong id="avgPotable">—</strong></div>
+      <div class="stat-chip">State Avg WQI: <strong id="stateAvgWQI">—</strong></div>
+    </div>
+
+    <!-- All-districts WQI overview chart -->
+    <div class="chart-card" style="margin-bottom:1.5rem">
+      <div class="chart-card-title">District WQI Overview — All Districts</div>
+      <div class="chart-card-sub">Average Water Quality Index per district. Lower is better. Bars are colored by grade.</div>
+      <div class="chart-wrap" style="height:340px">
+        <canvas id="allDistrictsChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <input type="text" id="districtSearch" class="form-input" placeholder="🔍 Search district…" />
+      <select id="gradeFilter" class="form-select">
+        <option value="">All Grades</option>
+        <option value="A">Grade A — Excellent</option>
+        <option value="B">Grade B — Good</option>
+        <option value="C">Grade C — Poor</option>
+        <option value="D">Grade D — Very Poor</option>
+        <option value="E">Grade E — Unsuitable</option>
+      </select>
+      <select id="sortSelect" class="form-select">
+        <option value="name">Sort: Name A–Z</option>
+        <option value="wqi_asc">Sort: WQI Low–High</option>
+        <option value="wqi_desc">Sort: WQI High–Low</option>
+        <option value="potable_desc">Sort: Potable % High</option>
+      </select>
+    </div>
+
+    <div class="results-count">Showing <strong id="shownCount">—</strong> of <strong id="totalCount">—</strong> districts</div>
+
+    <!-- Loading -->
+    <div class="loading-state" id="districtsLoading">
+      <div class="spinner"></div>
+      <p>Loading district data…</p>
+    </div>
+
+    <!-- Grid -->
+    <div class="districts-grid" id="districtsGrid" style="display:none"></div>
+
+  </div>
+</main>
+
+<!-- District Detail Modal -->
+<div class="modal-backdrop" id="districtModal" aria-hidden="true">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">—</div>
+        <div id="modalDistrictMeta" style="margin-top:.3rem"></div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Tabs -->
+      <div class="tabs" id="modalTabs">
+        <button class="tab-btn active" data-tab="tabOverview">Overview</button>
+        <button class="tab-btn" data-tab="tabParameters">Parameters</button>
+        <button class="tab-btn" data-tab="tabTrends">Trends</button>
+        <button class="tab-btn" data-tab="tabExceedances">Exceedances</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div class="tab-panel active" id="tabOverview">
+        <div class="grid-2" style="gap:1rem;margin-bottom:1rem">
+          <div class="card card-padded">
+            <div class="kpi-label">Avg WQI</div>
+            <div class="kpi-value" style="font-size:1.5rem" id="modalAvgWQI">—</div>
+          </div>
+          <div class="card card-padded">
+            <div class="kpi-label">Grade</div>
+            <div class="kpi-value" style="font-size:1rem" id="modalGrade">—</div>
+          </div>
+          <div class="card card-padded">
+            <div class="kpi-label">Potable Samples</div>
+            <div class="kpi-value" style="font-size:1.5rem" id="modalPotablePct">—</div>
+          </div>
+          <div class="card card-padded">
+            <div class="kpi-label">Total Samples</div>
+            <div class="kpi-value" style="font-size:1.5rem" id="modalSampleCount">—</div>
+          </div>
+        </div>
+        <div class="card card-padded">
+          <div class="kpi-label" style="margin-bottom:.4rem">Potability Assessment</div>
+          <p id="modalPotabilityNote" style="font-size:.875rem;color:var(--text-secondary)">Loading…</p>
+        </div>
+      </div>
+
+      <!-- Tab: Parameters -->
+      <div class="tab-panel" id="tabParameters">
+        <div class="grid-2" style="gap:.75rem">
+          <div class="card card-padded"><div class="kpi-label">pH</div><div class="kpi-value" style="font-size:1.3rem" id="modalPH">—</div></div>
+          <div class="card card-padded"><div class="kpi-label">TDS (mg/L)</div><div class="kpi-value" style="font-size:1.3rem" id="modalTDS">—</div></div>
+          <div class="card card-padded"><div class="kpi-label">Nitrate (mg/L)</div><div class="kpi-value" style="font-size:1.3rem" id="modalNitrate">—</div></div>
+          <div class="card card-padded"><div class="kpi-label">Fluoride (mg/L)</div><div class="kpi-value" style="font-size:1.3rem" id="modalFluoride">—</div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:.75rem">Values shown are district averages. Full parameter data available via API.</p>
+      </div>
+
+      <!-- Tab: Trends -->
+      <div class="tab-panel" id="tabTrends">
+        <div class="chart-wrap" style="height:220px">
+          <canvas id="districtTrendChart"></canvas>
+        </div>
+        <div class="trend-placeholder" style="display:none;text-align:center;padding:2rem;color:var(--text-muted);font-size:.875rem">No trend data available for this district.</div>
+      </div>
+
+      <!-- Tab: Exceedances -->
+      <div class="tab-panel" id="tabExceedances">
+        <div id="modalExceedances">
+          <p style="color:var(--text-muted);font-size:.875rem">Loading parameter data…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">💧 AquaSure</div>
+        <div class="footer-tagline">Groundwater Quality Analytics · BIS IS 10500:2012</div>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+        <a href="compare.html">Compare</a><a href="test-water.html">Test Your Water</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2025 AquaSure · For educational purposes</div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/districts.js"></script>
+</body>
+</html>

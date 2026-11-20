@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaSure — Groundwater Quality Analytics</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/glass.css" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" fill="#0284c7" opacity=".2"/>
+        <path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" stroke="#0284c7" stroke-width="1.75" fill="none"/>
+        <path d="M9 18c0 2.76 2.24 5 5 5" stroke="#0284c7" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+      AquaSure
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="districts.html">Districts</a></li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="test-water.html" class="nav-cta">Test Your Water</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">🔬 BIS IS 10500:2012 Standards</div>
+    <h1>Groundwater Quality<br/><span>Analytics Platform</span></h1>
+    <p>Assess groundwater quality using the Weighted Arithmetic Water Quality Index. Explore district-level data, run your own water tests, and download professional PDF reports.</p>
+    <div class="hero-actions">
+      <a href="test-water.html" class="btn btn-primary btn-lg">Test Your Water Quality</a>
+      <a href="dashboard.html" class="btn btn-outline btn-lg">View Dashboard</a>
+    </div>
+  </div>
+</section>
+
+<!-- Stat strip -->
+<div class="stat-strip" id="statStrip">
+  <div class="container">
+    <div class="stat-strip-grid">
+      <div class="stat-strip-item">
+        <div class="stat-strip-num" id="statSamples">—</div>
+        <div class="stat-strip-lbl">Water Samples</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num" id="statDistricts">—</div>
+        <div class="stat-strip-lbl">Districts Analysed</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num" id="statPotable">—</div>
+        <div class="stat-strip-lbl">Potable Rate</div>
+      </div>
+      <div class="stat-strip-item">
+        <div class="stat-strip-num" id="statAvgWQI">—</div>
+        <div class="stat-strip-lbl">State Avg WQI</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 class="section-title">What AquaSure Offers</h2>
+      <p class="section-sub">Two integrated modules for comprehensive groundwater quality analysis.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>District Analytics</h3>
+        <p>Explore groundwater quality data across all districts. View grade distributions, trend charts, parameter exceedances, and potability rates.</p>
+        <a href="districts.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Explore Districts →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧪</div>
+        <h3>Test Your Water</h3>
+        <p>Enter your water sample measurements and get an instant BIS IS 10500:2012 assessment with WQI score, grade, violations, and treatment recommendations.</p>
+        <a href="test-water.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Start Assessment →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Compare Districts</h3>
+        <p>Select up to 4 districts and compare them side by side across key water quality parameters with interactive bar and radar charts.</p>
+        <a href="compare.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Compare →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>WQI Calculator</h3>
+        <p>Use the weighted arithmetic formula to calculate the Water Quality Index. Run sensitivity analysis to understand which parameters drive the score.</p>
+        <a href="calculator.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Open Calculator →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>PDF Reports</h3>
+        <p>Download a professionally formatted PDF assessment report with parameter tables, BIS violations, and actionable recommendations for any water sample.</p>
+        <a href="test-water.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Get Report →</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏛️</div>
+        <h3>BIS IS 10500:2012</h3>
+        <p>All assessments are based on the Bureau of Indian Standards IS 10500:2012 specification for drinking water quality, covering 10 key parameters.</p>
+        <a href="about.html" class="btn btn-outline btn-sm" style="margin-top:1rem">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Grade Legend -->
+<section class="section-sm" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:1.5rem;justify-content:center">
+      <span style="font-size:.82rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em">WQI Grade Scale</span>
+      <div class="grade-legend">
+        <div class="grade-pill" style="background:#dcfce7;color:#15803d;border-color:#bbf7d0"><span style="font-weight:800">A</span> Excellent (0–25)</div>
+        <div class="grade-pill" style="background:#e0f2fe;color:#0369a1;border-color:#bae6fd"><span style="font-weight:800">B</span> Good (26–50)</div>
+        <div class="grade-pill" style="background:#fef3c7;color:#b45309;border-color:#fde68a"><span style="font-weight:800">C</span> Poor (51–75)</div>
+        <div class="grade-pill" style="background:#ffedd5;color:#c2410c;border-color:#fed7aa"><span style="font-weight:800">D</span> Very Poor (76–100)</div>
+        <div class="grade-pill" style="background:#fee2e2;color:#b91c1c;border-color:#fecaca"><span style="font-weight:800">E</span> Unsuitable (&gt;100)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section">
+  <div class="container container-sm">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 class="section-title">How the WQI Works</h2>
+      <p class="section-sub">Weighted Arithmetic Water Quality Index (WAWQI) based on BIS IS 10500:2012</p>
+    </div>
+    <div class="grid-3" style="gap:1rem">
+      <div style="text-align:center;padding:1.5rem">
+        <div style="width:48px;height:48px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;margin:0 auto .75rem">1</div>
+        <h4 style="font-weight:600;margin-bottom:.35rem">Measure Parameters</h4>
+        <p style="font-size:.86rem;color:var(--text-muted)">Test pH, TDS, EC, hardness, calcium, magnesium, chloride, sulphate, nitrate, and fluoride.</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem">
+        <div style="width:48px;height:48px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;margin:0 auto .75rem">2</div>
+        <h4 style="font-weight:600;margin-bottom:.35rem">Calculate Sub-indices</h4>
+        <p style="font-size:.86rem;color:var(--text-muted)">Each parameter gets a quality index (qi). For pH: qi = (|val−7|/1.5)×100. For others: qi = (val/limit)×100.</p>
+      </div>
+      <div style="text-align:center;padding:1.5rem">
+        <div style="width:48px;height:48px;background:var(--primary-light);color:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:800;margin:0 auto .75rem">3</div>
+        <h4 style="font-weight:600;margin-bottom:.35rem">Compute WQI Grade</h4>
+        <p style="font-size:.86rem;color:var(--text-muted)">WQI = Σ(normalized weight × qi). Assign grade A–E and potability status per BIS thresholds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">💧 AquaSure</div>
+        <div class="footer-tagline">Groundwater Quality Analytics Platform<br/>BIS IS 10500:2012 Standards</div>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="districts.html">Districts</a>
+        <a href="compare.html">Compare</a>
+        <a href="test-water.html">Test Your Water</a>
+        <a href="about.html">About</a>
+        <a href="calculator.html">WQI Calculator</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2025 AquaSure · Built with BIS IS 10500:2012 Standards · For educational purposes</div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Load overview stats into the stat strip
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    try {
+      const ov = await AquaSureAPI.getOverview();
+      const n = v => (v == null ? '—' : v);
+      document.getElementById('statSamples').textContent   = formatNumber(ov.total_samples, 0);
+      document.getElementById('statDistricts').textContent = n(ov.district_count);
+      document.getElementById('statPotable').textContent   = ov.potable_percent != null ? ov.potable_percent.toFixed(1) + '%' : '—';
+      document.getElementById('statAvgWQI').textContent    = ov.avg_wqi != null ? ov.avg_wqi.toFixed(1) : '—';
+    } catch (e) { /* backend not running */ }
+  });
+</script>
+</body>
+</html>

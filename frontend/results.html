@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assessment Results — AquaSure</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/glass.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" fill="#0284c7" opacity=".2"/><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" stroke="#0284c7" stroke-width="1.75" fill="none"/><path d="M9 18c0 2.76 2.24 5 5 5" stroke="#0284c7" stroke-width="1.75" stroke-linecap="round"/></svg>
+      AquaSure
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="districts.html">Districts</a></li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="test-water.html" class="nav-cta">Test Your Water</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container container-sm" id="resultsContainer" style="display:none">
+
+    <!-- Action bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.5rem">
+      <div class="page-header" style="margin:0">
+        <h1 id="resultsTitle">Assessment Results</h1>
+        <p id="resultsSubtitle" style="margin-top:.25rem"></p>
+      </div>
+      <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+        <button id="downloadPdfBtn" class="btn btn-primary">📄 Download PDF</button>
+        <a href="test-water.html" class="btn btn-outline">🔄 New Test</a>
+      </div>
+    </div>
+
+    <!-- Result hero -->
+    <div class="result-hero">
+      <div class="result-grade-badge" id="gradeBadge">
+        <span id="gradeLetter">?</span>
+        <span class="grade-label" id="gradeLabel">—</span>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">WQI Score</div>
+        <div style="font-size:2.5rem;font-weight:800;color:var(--text);line-height:1" id="wqiScore">—</div>
+        <div style="font-size:.875rem;color:var(--text-muted);margin-top:.3rem" id="wqiCategory">—</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Potability</div>
+        <div style="font-size:1.1rem;font-weight:700;margin-bottom:.3rem" id="potabilityStatus">—</div>
+        <div style="font-size:.86rem;color:var(--text-muted)" id="overallAssessment">—</div>
+      </div>
+    </div>
+
+    <!-- Parameter Assessment table -->
+    <div class="card mb-3">
+      <div class="card-header"><span class="card-title">Parameter Assessment — BIS IS 10500:2012</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Measured</th>
+              <th>Acceptable Limit</th>
+              <th>Permissible Limit</th>
+              <th>Sub-Index (qi)</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="paramTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Violations -->
+    <div id="violationsSection" class="card card-padded mb-3" style="display:none">
+      <div class="card-title" style="margin-bottom:.75rem;color:var(--danger)">⚠️ BIS Violations</div>
+      <div id="violationsList"></div>
+    </div>
+
+    <!-- Recommendations -->
+    <div class="card card-padded mb-3">
+      <div class="card-title" style="margin-bottom:.75rem">💡 Recommendations</div>
+      <div id="recommendationsList"></div>
+    </div>
+
+    <!-- Parameters not tested -->
+    <div id="notTestedSection" class="alert alert-info mb-3" style="display:none">
+      <span>ℹ️</span>
+      <span><strong>Parameters not tested:</strong> <span id="notTestedList"></span>. These may affect actual water quality. Consider comprehensive laboratory testing.</span>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="card card-padded mb-3" style="background:var(--bg)">
+      <div class="card-title" style="margin-bottom:.5rem">Disclaimer</div>
+      <p id="disclaimerText" style="font-size:.8rem;color:var(--text-muted);line-height:1.6"></p>
+    </div>
+
+  </div>
+
+  <!-- No data state -->
+  <div class="container container-sm" id="noDataState">
+    <div class="empty-state" style="margin-top:3rem">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="18" stroke="#94a3b8" stroke-width="2"/>
+        <path d="M24 16v8" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="24" cy="32" r="1.5" fill="#94a3b8"/>
+      </svg>
+      <h3>No assessment data</h3>
+      <p>Run a water quality test first to see results here.</p>
+      <a href="test-water.html" class="btn btn-primary btn-sm" style="margin-top:1rem">Go to Test Your Water →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">💧 AquaSure</div>
+        <div class="footer-tagline">Groundwater Quality Analytics · BIS IS 10500:2012</div>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+        <a href="test-water.html">Test Your Water</a><a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2025 AquaSure · For educational purposes</div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/results.js"></script>
+</body>
+</html>

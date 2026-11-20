@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — AquaSure</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/glass.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" fill="#0284c7" opacity=".2"/><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" stroke="#0284c7" stroke-width="1.75" fill="none"/><path d="M9 18c0 2.76 2.24 5 5 5" stroke="#0284c7" stroke-width="1.75" stroke-linecap="round"/></svg>
+      AquaSure
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="districts.html">Districts</a></li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="test-water.html" class="nav-cta">Test Your Water</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Groundwater Quality Dashboard</h1>
+      <p>District-level analysis · BIS IS 10500:2012 · Data from 2020–2025</p>
+    </div>
+
+    <!-- KPI row -->
+    <div class="dashboard-kpis">
+      <div class="kpi-card">
+        <div class="kpi-icon blue">💧</div>
+        <div>
+          <div class="kpi-label">Total Samples</div>
+          <div class="kpi-value" id="kpiTotalSamples"><span class="spinner spinner-sm"></span></div>
+          <div class="kpi-sub">Water samples analysed</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon green">✅</div>
+        <div>
+          <div class="kpi-label">Potable %</div>
+          <div class="kpi-value" id="kpiPotable"><span class="spinner spinner-sm"></span></div>
+          <div class="kpi-sub">Safe for direct drinking</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon amber">📊</div>
+        <div>
+          <div class="kpi-label">State Avg WQI</div>
+          <div class="kpi-value" id="kpiAvgWQI"><span class="spinner spinner-sm"></span></div>
+          <div class="kpi-sub">Weighted quality index</div>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon orange">🗺️</div>
+        <div>
+          <div class="kpi-label">Districts</div>
+          <div class="kpi-value" id="kpiDistricts"><span class="spinner spinner-sm"></span></div>
+          <div class="kpi-sub">Covered in dataset</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts row 1 -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-card-title">Grade Distribution</div>
+        <div class="chart-card-sub">Share of samples by WQI grade (A–E)</div>
+        <div class="chart-wrap" style="height:260px">
+          <div class="chart-loading" id="gradeChartLoading"><div class="spinner"></div></div>
+          <canvas id="gradeChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">Potability by Category</div>
+        <div class="chart-card-sub">Potable vs non-potable samples</div>
+        <div class="chart-wrap" style="height:260px">
+          <div class="chart-loading" id="potabilityChartLoading"><div class="spinner"></div></div>
+          <canvas id="potabilityChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts row 2 -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-card-title">WQI Trend (2020–2025)</div>
+        <div class="chart-card-sub">Annual average WQI and potability rate</div>
+        <div class="chart-wrap" style="height:260px">
+          <div class="chart-loading" id="trendChartLoading"><div class="spinner"></div></div>
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-title">District Rankings</div>
+        <div class="chart-card-sub">Top 10 districts by average WQI</div>
+        <div class="chart-wrap" style="height:260px">
+          <div class="chart-loading" id="districtRankChartLoading"><div class="spinner"></div></div>
+          <canvas id="districtRankChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Year range note -->
+    <div class="alert alert-info mt-2" id="yearRangeNote" style="display:none">
+      <span>ℹ️</span>
+      <span id="yearRangeText"></span>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">💧 AquaSure</div>
+        <div class="footer-tagline">Groundwater Quality Analytics · BIS IS 10500:2012</div>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="districts.html">Districts</a>
+        <a href="compare.html">Compare</a><a href="test-water.html">Test Your Water</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2025 AquaSure · For educational purposes</div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

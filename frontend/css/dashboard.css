@@ -1,0 +1,134 @@
+/* AquaSure — Dashboard / Districts / Calculator / Compare page styles */
+/* Extends style.css — load style.css first */
+
+/* ── Dashboard layout ─────────────────────────────────────────────────────── */
+.dashboard-kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+.charts-row-3 { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+
+/* ── Chart card ───────────────────────────────────────────────────────────── */
+.chart-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm);
+  padding: 1.25rem 1.5rem; position: relative;
+}
+.chart-card-title {
+  font-size: .78rem; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: .05em;
+  margin-bottom: .2rem;
+}
+.chart-card-sub { font-size: .75rem; color: var(--text-light); margin-bottom: 1rem; }
+.chart-wrap { position: relative; }
+
+/* Loading overlay inside chart card */
+.chart-loading {
+  position: absolute; inset: 0; background: rgba(255,255,255,.85);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius); z-index: 5;
+}
+
+/* ── District cards grid ──────────────────────────────────────────────────── */
+.districts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+.district-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow-xs);
+  padding: 1.1rem 1.25rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+.district-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.district-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: .6rem; }
+.district-name { font-size: .95rem; font-weight: 600; color: var(--text); }
+.district-wqi  { font-size: 1.75rem; font-weight: 800; line-height: 1; }
+.district-meta { display: flex; justify-content: space-between; font-size: .78rem; color: var(--text-muted); margin-top: .5rem; }
+
+/* ── Results count ────────────────────────────────────────────────────────── */
+.results-count {
+  font-size: .82rem; color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+.results-count strong { color: var(--text); }
+
+/* ── Calculator / Test-water form layout ──────────────────────────────────── */
+.calculator-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  align-items: start;
+}
+.param-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .9rem 1.25rem;
+}
+.param-unit {
+  font-size: .75rem; color: var(--text-muted); font-weight: 400; margin-left: .25rem;
+}
+
+/* ── WQI gauge ────────────────────────────────────────────────────────────── */
+.gauge-wrap { display: flex; justify-content: center; padding: 1rem 0; }
+
+/* ── Sub-index table ──────────────────────────────────────────────────────── */
+.sub-index-table th { font-size: .75rem; }
+.sub-index-table td { font-size: .82rem; }
+
+/* ── Sensitivity chart section ────────────────────────────────────────────── */
+.sensitivity-controls {
+  display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; flex-wrap: wrap;
+}
+.sensitivity-controls .form-select { flex: 0 0 auto; min-width: 180px; }
+
+/* ── Compare page ─────────────────────────────────────────────────────────── */
+.compare-selector {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem; box-shadow: var(--shadow-sm);
+}
+.compare-selector h3 { font-size: .875rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 1rem; }
+.compare-district-slots {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem;
+  align-items: flex-end;
+}
+.compare-results { display: none; }
+.compare-results.visible { display: block; }
+
+/* ── About page standards table ───────────────────────────────────────────── */
+.standards-table thead th { background: var(--primary); color: #fff; border: none; font-size: .78rem; }
+.standards-table tbody td { font-size: .82rem; }
+.standards-table { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+/* ── BIS parameter reference cards ───────────────────────────────────────── */
+.param-ref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.param-ref-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1rem;
+}
+.param-ref-name { font-size: .82rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
+.param-ref-row  { display: flex; justify-content: space-between; font-size: .75rem; color: var(--text-muted); padding: .15rem 0; }
+.param-ref-row span:last-child { font-weight: 600; color: var(--text-secondary); }
+
+/* ── Modal tabs for district detail ──────────────────────────────────────── */
+#districtModal .tabs { margin: 0 -1.5rem; padding: 0 1.5rem; }
+#districtModal .tab-panel { padding-top: .5rem; }
+
+/* ── Responsive adjustments ───────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .dashboard-kpis { grid-template-columns: repeat(2, 1fr); }
+  .charts-row, .charts-row-3 { grid-template-columns: 1fr; }
+  .compare-district-slots { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .calculator-layout { grid-template-columns: 1fr; }
+  .param-grid { grid-template-columns: 1fr 1fr; }
+  .dashboard-kpis { grid-template-columns: 1fr 1fr; }
+  .compare-district-slots { grid-template-columns: 1fr 1fr; }
+  .districts-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+@media (max-width: 480px) {
+  .param-grid { grid-template-columns: 1fr; }
+  .compare-district-slots { grid-template-columns: 1fr; }
+  .dashboard-kpis { grid-template-columns: 1fr; }
+}

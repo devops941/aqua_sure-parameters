@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — AquaSure</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/glass.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 28 28" fill="none"><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" fill="#0284c7" opacity=".2"/><path d="M14 3C14 3 5 11.5 5 17.5a9 9 0 0018 0C23 11.5 14 3 14 3z" stroke="#0284c7" stroke-width="1.75" fill="none"/><path d="M9 18c0 2.76 2.24 5 5 5" stroke="#0284c7" stroke-width="1.75" stroke-linecap="round"/></svg>
+      AquaSure
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="districts.html">Districts</a></li>
+      <li><a href="compare.html">Compare</a></li>
+      <li><a href="calculator.html">Calculator</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="test-water.html" class="nav-cta">Test Your Water</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="container container-sm">
+
+    <div class="page-header">
+      <h1>About AquaSure</h1>
+      <p>Groundwater Quality Analytics Platform — BIS IS 10500:2012</p>
+    </div>
+
+    <!-- About the platform -->
+    <div class="card card-padded mb-3">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem;color:var(--text)">What is AquaSure?</h2>
+      <p style="color:var(--text-secondary);margin-bottom:.75rem">AquaSure is a groundwater quality analytics platform that implements the <strong>Weighted Arithmetic Water Quality Index (WAWQI)</strong> based on Bureau of Indian Standards IS 10500:2012. It provides district-level analysis of groundwater quality and an individual water assessment tool.</p>
+      <p style="color:var(--text-secondary)">The platform covers two main modules: <strong>Module 1</strong> — District-wise groundwater quality analysis using historical data, and <strong>Module 2</strong> — Individual water sample assessment with BIS compliance checking, recommendations, and PDF report generation.</p>
+    </div>
+
+    <!-- WQI Methodology -->
+    <div class="card card-padded mb-3">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem;color:var(--text)">WQI Methodology (WAWQI)</h2>
+      <p style="color:var(--text-secondary);margin-bottom:1rem">The Weighted Arithmetic Water Quality Index (WAWQI) is computed using the following steps:</p>
+
+      <div style="display:grid;gap:.75rem">
+        <div class="card" style="border-left:3px solid var(--primary);padding:.85rem 1rem;border-radius:var(--radius-sm)">
+          <div style="font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.3rem">Step 1 — Sub-Index Calculation (qi)</div>
+          <p style="font-size:.86rem;color:var(--text-secondary)">For <strong>pH</strong>: qi = (|value − 7.0| / 1.5) × 100</p>
+          <p style="font-size:.86rem;color:var(--text-secondary);margin-top:.2rem">For <strong>all other parameters</strong>: qi = (value / acceptable limit) × 100</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--primary);padding:.85rem 1rem;border-radius:var(--radius-sm)">
+          <div style="font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.3rem">Step 2 — Normalize Weights</div>
+          <p style="font-size:.86rem;color:var(--text-secondary)">wi = raw weight of parameter i<br/>Normalized weight = wi / Σ(all active parameter weights)</p>
+        </div>
+        <div class="card" style="border-left:3px solid var(--primary);padding:.85rem 1rem;border-radius:var(--radius-sm)">
+          <div style="font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:.3rem">Step 3 — Compute WQI</div>
+          <p style="font-size:.86rem;color:var(--text-secondary)">WQI = Σ (normalized_weight_i × qi_i)</p>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem">
+        <div class="card-title" style="margin-bottom:.6rem">Grade Classification</div>
+        <div class="grade-legend">
+          <div class="grade-pill" style="background:#dcfce7;color:#15803d;border-color:#bbf7d0"><strong>A</strong> 0–25 Excellent — Potable</div>
+          <div class="grade-pill" style="background:#e0f2fe;color:#0369a1;border-color:#bae6fd"><strong>B</strong> 26–50 Good — Potable</div>
+          <div class="grade-pill" style="background:#fef3c7;color:#b45309;border-color:#fde68a"><strong>C</strong> 51–75 Poor — Requires Treatment</div>
+          <div class="grade-pill" style="background:#ffedd5;color:#c2410c;border-color:#fed7aa"><strong>D</strong> 76–100 Very Poor — Non-Potable</div>
+          <div class="grade-pill" style="background:#fee2e2;color:#b91c1c;border-color:#fecaca"><strong>E</strong> &gt;100 Unsuitable — Hazardous</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIS Standards Table -->
+    <div class="card mb-3">
+      <div class="card-header"><span class="card-title">BIS IS 10500:2012 Parameter Standards</span></div>
+      <div class="table-wrap">
+        <table class="standards-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Unit</th>
+              <th>Acceptable Limit</th>
+              <th>Permissible Limit</th>
+              <th>Ideal Value</th>
+              <th>Weight (w)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>pH</td><td>pH unit</td><td>6.5–8.5</td><td>6.5–8.5</td><td>7.0</td><td>4</td></tr>
+            <tr><td>Total Dissolved Solids (TDS)</td><td>mg/L</td><td>500</td><td>2000</td><td>0</td><td>5</td></tr>
+            <tr><td>Electrical Conductivity (EC)</td><td>µS/cm</td><td>750</td><td>2250</td><td>0</td><td>3</td></tr>
+            <tr><td>Total Hardness (as CaCO₃)</td><td>mg/L</td><td>200</td><td>600</td><td>0</td><td>3</td></tr>
+            <tr><td>Calcium (Ca)</td><td>mg/L</td><td>75</td><td>200</td><td>0</td><td>2</td></tr>
+            <tr><td>Magnesium (Mg)</td><td>mg/L</td><td>30</td><td>100</td><td>0</td><td>2</td></tr>
+            <tr><td>Chloride (Cl)</td><td>mg/L</td><td>250</td><td>1000</td><td>0</td><td>3</td></tr>
+            <tr><td>Sulphate (SO₄)</td><td>mg/L</td><td>200</td><td>400</td><td>0</td><td>4</td></tr>
+            <tr><td>Nitrate (NO₃)</td><td>mg/L</td><td>45</td><td>45</td><td>0</td><td>5</td></tr>
+            <tr><td>Fluoride (F)</td><td>mg/L</td><td>1.0</td><td>1.5</td><td>0</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Potability rules -->
+    <div class="card card-padded mb-3">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem;color:var(--text)">Strict Potability Rules</h2>
+      <p style="font-size:.875rem;color:var(--text-secondary);margin-bottom:.75rem">In addition to the WQI score, potability is determined by critical parameter thresholds. Any breach of the following makes water non-potable regardless of grade:</p>
+      <ul style="list-style:disc;padding-left:1.25rem;font-size:.875rem;color:var(--text-secondary);display:grid;gap:.3rem">
+        <li>Nitrate (NO₃) &gt; 45 mg/L — risk of methemoglobinemia (blue baby syndrome)</li>
+        <li>Fluoride (F) &gt; 1.5 mg/L — risk of fluorosis</li>
+        <li>pH outside 6.5–8.5 — corrosive or scaling water</li>
+        <li>TDS &gt; 2000 mg/L — high dissolved solids affecting taste and health</li>
+      </ul>
+    </div>
+
+    <!-- Tech stack -->
+    <div class="card card-padded mb-3">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem;color:var(--text)">Technology Stack</h2>
+      <div class="grid-2" style="gap:.75rem">
+        <div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:.4rem">Backend</div>
+          <ul style="font-size:.875rem;color:var(--text-secondary);list-style:disc;padding-left:1.25rem;display:grid;gap:.2rem">
+            <li>Python 3.12 + Flask REST API</li>
+            <li>Pandas + NumPy for data processing</li>
+            <li>Parquet files for fast I/O</li>
+            <li>ReportLab for PDF generation</li>
+            <li>In-memory caching for performance</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:.4rem">Frontend</div>
+          <ul style="font-size:.875rem;color:var(--text-secondary);list-style:disc;padding-left:1.25rem;display:grid;gap:.2rem">
+            <li>Vanilla HTML5 / CSS3 / JavaScript</li>
+            <li>Chart.js 4 for all visualisations</li>
+            <li>No frameworks — fully portable</li>
+            <li>localStorage for state passing</li>
+            <li>Responsive design — mobile friendly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data source -->
+    <div class="card card-padded">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text)">Data Source &amp; Disclaimer</h2>
+      <p style="font-size:.875rem;color:var(--text-secondary);margin-bottom:.5rem">The district-level groundwater data covers the period 2020–2025 and contains measurements for 10 BIS IS 10500:2012 parameters across all districts.</p>
+      <div class="alert alert-warning" style="margin-top:.75rem">
+        <span>⚠️</span>
+        <span style="font-size:.82rem">This platform is for <strong>educational purposes only</strong>. Assessments do not substitute for certified laboratory testing. Always consult a certified water testing laboratory for health and safety decisions.</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">💧 AquaSure</div>
+        <div class="footer-tagline">Groundwater Quality Analytics · BIS IS 10500:2012</div>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a>
+        <a href="districts.html">Districts</a><a href="test-water.html">Test Your Water</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">© 2025 AquaSure · For educational purposes</div>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>

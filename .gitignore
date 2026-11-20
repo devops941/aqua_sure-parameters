@@ -1,0 +1,25 @@
+# ── Python ───────────────────────────────────────────────
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# ── Environment / secrets ────────────────────────────────
+.env
+.env.*
+.streamlit/secrets.toml
+
+# ── Generated reports ────────────────────────────────────
+reports/*.pdf
+
+# ── OS / IDE ─────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
