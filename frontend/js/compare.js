@@ -173,7 +173,7 @@
     if (!head || !body) return;
 
     head.innerHTML = '<tr><th>Parameter</th>' +
-      data.map((d,i) => `<th style="color:${DATASET_COLORS[i]}">${_esc(d.district)}</th>`).join('') + '</tr>';
+      data.map((d,i) => `<th style="color:${DATASET_COLORS[i]};text-align:right">${_esc(d.district)}</th>`).join('') + '</tr>';
 
     const params = Object.keys(PARAM_LABELS);
     body.innerHTML = params.map(p => {

@@ -44,7 +44,7 @@
 
     card.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem">
-        <h3 style="font-size:1rem;font-weight:600;color:#e2e8f0;margin:0">${_esc(d.district)}</h3>
+        <h3 style="font-size:1rem;font-weight:600;color:#0f172a;margin:0">${_esc(d.district)}</h3>
         <span style="background:${color}22;color:${color};border:1px solid ${color}55;padding:.15rem .55rem;border-radius:999px;font-size:.72rem;font-weight:700">
           Grade ${grade}
         </span>

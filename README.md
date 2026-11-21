@@ -55,7 +55,8 @@ Aqua_sure/
 │       ├── district_analytics_tab.py                # 38-district drilldown & PDF exporter
 │       ├── trends_tab.py                            # 2020–2025 multi-year & seasonal dynamics
 │       ├── correlation_tab.py                       # SciPy & Seaborn hydrochemical correlation
-│       └── calculator_tab.py                        # Live WQI & ML potability lab tester
+│       ├── calculator_tab.py                        # Live WQI & ML potability lab tester
+│       └── upload_analyzer_tab.py                   # Batch CSV uploader: fuzzy column mapping, WQI & GIS for custom datasets
 ├── scripts/
 │   ├── inspect_dataset.py                           # Automated data audit script
 │   └── run_pipeline.py                              # End-to-end data processing script
@@ -78,12 +79,23 @@ pip install -r requirements.txt
 python scripts/run_pipeline.py
 ```
 
-### 3. Launch the Streamlit Dashboard
+### 3. Launch the Application
+
+**Recommended — convenience launcher (`run.py`):**
+
+| Command | Effect |
+|---|---|
+| `python run.py` | Starts Flask backend on `:5000` + static frontend on `:8000` |
+| `python run.py streamlit` | Launches the Streamlit dashboard at `http://localhost:8501` |
+
+On Windows you can also double-click **`start.bat`** to start the full stack with a single click.
+
+**Manual Streamlit launch (alternative):**
 ```bash
 streamlit run app/streamlit_app.py
 ```
 
-The application will launch locally at `http://localhost:8501`.
+The Streamlit dashboard launches at `http://localhost:8501`.
 
 ---
 

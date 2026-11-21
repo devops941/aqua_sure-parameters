@@ -220,8 +220,6 @@ st.markdown("""
         color: #059669;
         border-color: #a7f3d0;
     }
-        border-color: #a7f3d0;
-    }
 
     /* Live Status Pill in Sidebar */
     .live-status-pill {

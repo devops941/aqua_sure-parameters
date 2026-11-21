@@ -56,7 +56,7 @@ TN_38_DISTRICTS = [
     "Kanyakumari", "Karur", "Krishnagiri", "Madurai", "Mayiladuthurai",
     "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur", "Pudukkottai",
     "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi",
-    "Thanjavur", "Theni", "Tiruchirappalli", "Tirunelveli", "Tirupathur",
+    "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur",
     "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore",
     "Viluppuram", "Virudhunagar"
 ]
@@ -69,7 +69,9 @@ DISTRICT_ALIASES = {
     "Trichy": "Tiruchirappalli",
     "Tiruchirapalli": "Tiruchirappalli",
     "The Nilgiris": "Nilgiris",
-    "Kanniyakumari": "Kanyakumari"
+    "Kanniyakumari": "Kanyakumari",
+    "Tuticorin": "Thoothukudi",
+    "Thuthukudi": "Thoothukudi"
 }
 
 # BIS 10500:2012 Drinking Water Specification & Relative Weights (wi)
